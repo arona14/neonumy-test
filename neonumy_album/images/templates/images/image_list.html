@@ -1,0 +1,23 @@
+{% block content %}
+<div class="homepage-container">
+    <h1>Photo Album</h1>
+    <nav class="navigation">
+        <a href="{% url 'upload_image' %}">Upload</a>
+    </nav>
+
+    <div class="image-list">
+        {% for image in images %}
+            <div class="image-item">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="thumbnail">
+                <div class="actions">
+                    <a href="{% url 'image_detail' image.id %}" class="detail-button">Detail</a>
+                    <form action="{% url 'delete_image' image.id %}" method="post" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

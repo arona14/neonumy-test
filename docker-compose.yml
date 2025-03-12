@@ -1,0 +1,25 @@
+version: '3.12'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://your_db_user:your_db_password@db:5432/neonumy
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: neonumy
+      POSTGRES_USER: your_db_user
+      POSTGRES_PASSWORD: your_db_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

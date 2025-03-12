@@ -1,0 +1,62 @@
+.vscode
+.DS_Store
+*.pyc
+*.swp
+.env
+rocketrip-dev.iml
+.project
+.pydevproject
+venv
+logs/*.log
+ghostdriver.log
+rocketrip/settings/local.py
+src/
+*.scssc
+*.css.map
+*.rdb
+staticfiles
+temp.csv
+temp_receipt_file
+.coverage
+bin/dump.sql
+docker/mysql/setup/dump.sql
+htmlcov/
+.sass-cache/
+.babel-cache/
+.cache/
+.idea/
+assets/screenshots/screen/
+assets/screenshots/diff/
+assets/screenshots/error/
+assets/app/
+temp_workspace/
+
+jscpd-report.html
+
+
+local-env
+sslcert*
+
+# Generated docs
+doc
+
+# Pyenv version
+.python-version
+
+#Docker stuff
+database
+
+# emails
+emails/tmp
+emails/config.json
+
+# computedfields
+map.pickle
+
+__snapshots__/<stdin>__<module>.json
+
+.pytest_cache
+/.python-version
+
+supervisord.log
+supervisord.pid
