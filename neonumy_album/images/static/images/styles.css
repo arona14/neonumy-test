@@ -36,31 +36,49 @@ h1 {
 }
 
 .image-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    padding: 20px 0;
 }
 
 .image-item {
-    flex: 1 1 calc(33.333% - 40px);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.image-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail-container {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 Aspect Ratio */
+    overflow: hidden;
 }
 
 .thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
 }
 
 .actions {
-    padding: 10px;
-    text-align: center;
+    padding: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
+    background-color: #fff;
 }
 
 .detail-button, .delete-button {
