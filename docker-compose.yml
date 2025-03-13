@@ -1,25 +1,33 @@
-version: '3.12'
+version: '3.8'
 
 services:
   web:
     build: .
-    ports:
-      - "8000:8000"
+    command: >
+      sh -c "poetry run python manage.py migrate &&
+             poetry run gunicorn neonumy_album.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
+      - static_volume:/app/neonumy_album/staticfiles
+      - media_volume:/app/neonumy_album/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/neonumy_album
+      - PYTHONPATH=/app/neonumy_album
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgres://your_db_user:your_db_password@db:5432/neonumy
 
   db:
     image: postgres:13
-    environment:
-      POSTGRES_DB: neonumy
-      POSTGRES_USER: your_db_user
-      POSTGRES_PASSWORD: your_db_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=neonumy_album
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume: 

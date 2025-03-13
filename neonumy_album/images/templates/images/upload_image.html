@@ -1,6 +1,27 @@
-<h1>Upload Page</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+{% extends 'images/base.html' %}
+
+{% block content %}
+<div class="homepage-container">
+    <h1>Upload New Image</h1>
+    <nav class="navigation">
+        <a href="{% url 'image_list' %}">Back to Gallery</a>
+    </nav>
+
+    <div class="upload-form-container">
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">Title:</label>
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}">Image:</label>
+                {{ form.image }}
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit-button">Upload Image</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

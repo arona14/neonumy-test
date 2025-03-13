@@ -1,35 +1,46 @@
-# Use the official Python 3.12 image as the base image
+# Use an official Python runtime as a parent image
 FROM python:3.12-slim
 
 # Set environment variables
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV POETRY_VERSION=1.7.1
+ENV POETRY_HOME=/opt/poetry
+ENV POETRY_VENV=/opt/poetry-venv
+ENV POETRY_CACHE_DIR=/opt/.cache
 
-# Set the working directory inside the container
+# Set work directory
 WORKDIR /app
 
-# Install system dependencies required for PostgreSQL and Poetry
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
+    postgresql-client \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN pip install --upgrade pip && \
-    pip install poetry
+# Install poetry
+RUN python3 -m venv $POETRY_VENV \
+    && $POETRY_VENV/bin/pip install -U pip setuptools \
+    && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
 
-# Copy the project files
-COPY pyproject.toml poetry.lock ./
+# Add poetry to PATH
+ENV PATH="${PATH}:${POETRY_VENV}/bin"
 
-# Install Python dependencies using Poetry
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-root --no-interaction --no-ansi
+# Copy the entire project first
+COPY . /app/
 
-# Copy the rest of the application code
-COPY . .
+# Change to the project directory
+WORKDIR /app/neonumy_album
 
-# Expose the port the app runs on
-EXPOSE 8000
+# Install dependencies
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi
 
-# Command to run the application
-CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Set PYTHONPATH
+ENV PYTHONPATH=/app/neonumy_album
+
+# Collect static files
+RUN poetry run python manage.py collectstatic --noinput
+
+# Run gunicorn
+CMD ["poetry", "run", "gunicorn", "neonumy_album.wsgi:application", "--bind", "0.0.0.0:8000"] 

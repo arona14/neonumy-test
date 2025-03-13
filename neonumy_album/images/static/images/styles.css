@@ -58,15 +58,18 @@ h1 {
 .actions {
     padding: 10px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .detail-button, .delete-button {
     padding: 5px 10px;
-    margin: 5px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    min-width: 80px;
 }
 
 .detail-button {
@@ -86,4 +89,155 @@ h1 {
 
 .delete-button:hover {
     background-color: #c82333;
+}
+
+/* Upload Page Styles */
+.upload-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 40px 20px;
+}
+
+.upload-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.upload-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.upload-header h1 {
+    color: #2d3748;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    transition: color 0.2s;
+}
+
+.back-button:hover {
+    color: #2d3748;
+}
+
+.back-icon {
+    font-size: 1.2em;
+}
+
+/* Upload Form Styles */
+.upload-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group input[type="file"] {
+    padding: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+/* Image Detail Styles */
+.image-detail-container {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.image-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.image-actions {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.delete-form {
+    margin: 0;
+}
+
+.delete-form .delete-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    min-width: 120px;
 }
