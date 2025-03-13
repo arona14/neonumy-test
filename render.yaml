@@ -2,9 +2,9 @@ services:
   - type: web
     name: neonumy-album
     runtime: python
-    rootDirectory: neonumy_album
-    buildCommand: pip install poetry && poetry install
+    buildCommand: cd neonumy_album && pip install poetry && poetry install
     startCommand: >
+      cd neonumy_album &&
       poetry run python manage.py migrate &&
       poetry run python manage.py collectstatic --noinput &&
       poetry run gunicorn neonumy_album.wsgi:application --bind 0.0.0.0:$PORT

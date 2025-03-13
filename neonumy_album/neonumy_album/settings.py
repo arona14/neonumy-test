@@ -88,6 +88,7 @@ DATABASES = {
     'default': dj_database_url.config(
         conn_max_age=600,
         conn_health_checks=True,
+        default='postgresql://postgres:postgres@localhost:5432/neonumy_album'
     )
 }
 
