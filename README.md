@@ -162,6 +162,7 @@ neonumy_album/
 │   │   └── images/        # Application templates
 │   ├── models.py          # Database models
 │   ├── views.py           # View controllers
+|   |__ tests.py           # Tests
 │   └── schema.py          # GraphQL schema
 ├── neonumy_album/         # Project settings
 ├── media/                 # Uploaded media files
@@ -173,24 +174,12 @@ neonumy_album/
 └── docker-compose.yml   # Docker Compose configuration
 ```
 
-## Development
 
 ### Running Tests
 ```bash
 poetry run python manage.py test
 ```
 
-### Code Style
-The project follows PEP 8 style guide. You can check and format the code using:
-```bash
-# Run flake8 for code style checking
-poetry run flake8 .
-
-# Run black for code formatting
-poetry run black .
-```
-
-## Deployment
 
 ### Production Settings
 
