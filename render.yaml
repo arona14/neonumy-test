@@ -5,7 +5,9 @@ services:
     buildCommand: cd neonumy_album && pip install poetry && poetry install
     startCommand: >
       cd neonumy_album &&
-      poetry run python manage.py migrate &&
+      poetry run python -c 'import time; time.sleep(10)' &&
+      poetry run python manage.py makemigrations &&
+      poetry run python manage.py migrate --noinput &&
       poetry run python manage.py collectstatic --noinput &&
       poetry run gunicorn neonumy_album.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
