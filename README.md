@@ -34,7 +34,7 @@ A modern photo album application built with Django that allows users to upload, 
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/arona14/neonumy-test.git
 cd neonumy_album
 ```
 
