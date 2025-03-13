@@ -3,7 +3,6 @@ name = "neonumy-album"
 version = "0.1.0"
 description = "A modern photo album application built with Django"
 authors = ["Your Name <your.email@example.com>"]
-readme = "README.md"
 packages = [{include = "neonumy_album"}]
 
 [tool.poetry.dependencies]
