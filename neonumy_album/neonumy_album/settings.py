@@ -84,23 +84,24 @@ WSGI_APPLICATION = "neonumy_album.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Construct DATABASE_URL from individual settings if not provided
+if not os.environ.get('DATABASE_URL'):
+    db_url = f"postgresql://{os.environ.get('DB_USER', 'arona')}:{os.environ.get('DB_PASSWORD', '14071991')}@{os.environ.get('DB_HOST', 'localhost')}:{os.environ.get('DB_PORT', '5432')}/{os.environ.get('DB_NAME', 'neonumy_album')}"
+    os.environ['DATABASE_URL'] = db_url
+
 DATABASES = {
     'default': dj_database_url.config(
         conn_max_age=600,
         conn_health_checks=True,
-        default='postgresql://postgres:postgres@localhost:5432/neonumy_album'
     )
 }
 
+# Ensure database configuration is valid
 if not DATABASES['default']:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neonumy_album',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': '5432',
-    }
+    raise Exception(
+        'Database configuration is invalid. '
+        'Please ensure DATABASE_URL or individual database settings are set correctly.'
+    )
 
 
 # Password validation
