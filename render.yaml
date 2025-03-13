@@ -2,6 +2,7 @@ services:
   - type: web
     name: neonumy-album
     runtime: python
+    rootDirectory: neonumy_album
     buildCommand: pip install poetry && poetry install
     startCommand: >
       poetry run python manage.py migrate &&
@@ -20,8 +21,10 @@ services:
         value: "false"
       - key: ALLOWED_HOSTS
         value: .onrender.com
+    autoDeploy: true
 
 databases:
   - name: neonumy-album-db
     databaseName: neonumy_album
-    plan: free 
+    plan: free
+    ipAllowList: [] 

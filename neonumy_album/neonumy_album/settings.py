@@ -86,10 +86,20 @@ WSGI_APPLICATION = "neonumy_album.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@db:5432/neonumy_album',
-        conn_max_age=600
+        conn_max_age=600,
+        conn_health_checks=True,
     )
 }
+
+if not DATABASES['default']:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'neonumy_album',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
 
 
 # Password validation
