@@ -247,7 +247,24 @@ h1 {
 .image-actions {
     display: flex;
     justify-content: center;
+    gap: 15px;
     padding: 20px;
+}
+
+.image-actions .edit-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.image-actions .edit-button:hover {
+    background-color: #218838;
 }
 
 .delete-form {
@@ -258,4 +275,58 @@ h1 {
     padding: 10px 20px;
     font-size: 16px;
     min-width: 120px;
+}
+
+/* Edit Form Styles */
+.edit-form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edit-form .form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.edit-form .form-group input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.edit-form .form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.edit-button {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+    background-color: #218838;
 }

@@ -10,7 +10,9 @@
     <div class="image-detail-container">
         <div class="image-detail-content">
             <img src="{{ image.image.url }}" alt="{{ image.title }}" class="detail-image">
+            
             <div class="image-actions">
+                <a href="{% url 'update_image' image.id %}" class="edit-button">Edit Title</a>
                 <form action="{% url 'delete_image' image.id %}" method="post" class="delete-form">
                     {% csrf_token %}
                     <button type="submit" class="delete-button">Delete Image</button>

@@ -27,3 +27,14 @@ def delete_image(request, id):
         image.delete()
         return redirect('image_list')
     return redirect('image_list')
+
+def update_image(request, id):
+    image = get_object_or_404(Image, id=id)
+    if request.method == 'POST':
+        form = ImageForm(request.POST, instance=image)
+        if form.is_valid():
+            form.save()
+            return redirect('image_detail', id=image.id)
+    else:
+        form = ImageForm(instance=image)
+    return render(request, 'images/update_image.html', {'image': image, 'form': form})
